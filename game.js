@@ -9,7 +9,7 @@ let back_img = new Image();
 back_img.src = 'countries_backend.jpg';
 setTimeout( () => {
   backContext.drawImage(back_img, 0, 0, 800, 600)
-}, 10);
+}, 100);
 let middleCanvas = document.getElementById('canvas-middle');
 let middleContext = middleCanvas.getContext('2d');
 let middle_img = new Image();
@@ -18,9 +18,9 @@ setTimeout( () => {
   middleContext.drawImage(middle_img, 0, 0, 800, 600)
 }, 20);
 middleContext.imageSmoothingEnabled = false;
+middleContext.globalAlpha = 0.5;
 
 var date = new Date(), speed = 100, updates = 0;
-
 
 function update() {
     updates++;

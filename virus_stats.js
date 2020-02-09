@@ -14,7 +14,7 @@ class Virus{
             severity: 0,
             lethality: 0
         };
-        //Ewrasia=0, severna amerika=1, ushna amerika=2, afrika=4, awstraliq=5
+        //Ewrasia=0, severna amerika=1, ushna amerika=2, afrika=3, awstraliq=4
     }
     infectivityChange(howMuch_){
         this.infectivity += howMuch_;
