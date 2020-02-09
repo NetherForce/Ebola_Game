@@ -14,7 +14,7 @@ class Virus{
             severity: 0,
             lethality: 0
         };
-        //Ewrasia=0, severna amerika=1, ushna amerika=2, afrika=4, awstraliq=5
+        //Ewrasia=0, severna amerika=1, ushna amerika=2, afrika=3, awstraliq=4
     }
     infectivityChange(howMuch_){
         this.infectivity += howMuch_;
@@ -36,8 +36,15 @@ class Virus{
         for(let i=0; i<this.infectedIn.length; i++){
             let a = Math.random();
             if(a<(this.infectivity+this.bonus.infectivity)/100){
-                let novozarazeni = this.infectedIn[i] * (1 + Math.random());
+                let novozarazeni = Math.ceil(this.infectedIn[i] * (1 + Math.random()));
                 this.infectedIn[i] += novozarazeni;
+            }
+            
+            let b = Math.random();
+            if(b<(this.lethality+this.bonus.lethality)/100){
+                let novoubiti = Math.floor(this.infectedIn[i] * (1 + Math.random()));
+                this.infectedIn[i] -= novoubiti;
+                this.brDead += novoubiti;
             }
         }
     }
