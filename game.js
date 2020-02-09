@@ -9,7 +9,7 @@ let back_img = new Image();
 back_img.src = 'countries_backend.jpg';
 setTimeout( () => {
   backContext.drawImage(back_img, 0, 0, 800, 600)
-}, 10);
+}, 100);
 let middleCanvas = document.getElementById('canvas-middle');
 let middleContext = middleCanvas.getContext('2d');
 let middle_img = new Image();
@@ -18,21 +18,24 @@ setTimeout( () => {
   middleContext.drawImage(middle_img, 0, 0, 800, 600)
 }, 20);
 middleContext.imageSmoothingEnabled = false;
-
-var date = new Date(), speed = 100, updates = 0;
+var date = new Date(), dayLength = 100, updates = 0;
 
 
 function update() {
     updates++;
-    if (updates >= speed) {
+    dayHandler();
+};
+function dayHandler() {
+    if (updates >= dayLength) {
         date.setDate(date.getDate() + 1);
         updates = 0;
+        eventHandler.update();
     }
-}
+};
 function draw() {
     context.fillStyle="black";
     context.font="20px Georgia";
-    context.fillText(date.getDate() + '.'+ date.getMonth() + '.' + date.getFullYear(),50,50);
+    context.fillText(date.getDate() + '.'+ date.getMonth() + '.' + date.getFullYear() + '|' + eventHandler.currentEventName,50,50);
 }
 function keyup(key) {
     console.log("Pressed", key);
@@ -48,11 +51,3 @@ function mouseup() {
     if (pixel[1] == 177) console.log("Eurasia");
     if (pixel[1] == 71) console.log("Australia");
 };
-
-class Human{
-    constructor(x_, y_, country_) {
-        this.x = x_;
-        this.y = y_;
-        this.country = country_;
-    }
-}
