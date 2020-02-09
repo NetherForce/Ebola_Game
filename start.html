@@ -32,23 +32,8 @@
             };
            </script>
            <script src="game.js"></script>
-            <script>
-            if (endlessCanvas == undefined) {
-                var endlessCanvas = false;
-            }
-            var canvas = document.getElementById("canvas-id");
-            if (endlessCanvas) {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-                window.onresize = function () {
-                    canvas.width = window.innerWidth;
-                    canvas.height = window.innerHeight;
-                };
-            }
-            else {
-                canvas.width = 800;
-                canvas.height = 600;
-            }
+           <script>
+            const canvas = document.getElementById("canvas-id");
             var context = canvas.getContext("2d");
             context.fillStyle = "#0000ff";
             // global variables with mouse coordinates
