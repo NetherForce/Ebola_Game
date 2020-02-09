@@ -18,7 +18,6 @@ setTimeout( () => {
   middleContext.drawImage(middle_img, 0, 0, 800, 600)
 }, 20);
 middleContext.imageSmoothingEnabled = false;
-middleContext.globalAlpha = 0.5;
 
 var date = new Date(), speed = 100, updates = 0;
 var dayLength = 100, updates = 0;

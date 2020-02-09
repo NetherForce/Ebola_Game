@@ -49,3 +49,4 @@ class Virus{
         }
     }
 }
+var testVirus = new Virus('type', 1);
