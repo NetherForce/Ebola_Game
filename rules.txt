@@ -1,6 +1,6 @@
 class Human ----> x, y, country
 people = []
-В началото има 1 заразен човек в даден държава(континент). 
-На всяка стъпка всеки заразен човек има шанс да зарази нов. х и у на новия ще бъдат +- Math.random()
-
-Asia=0, severna amerika=1, ushna amerika=2, ewropa=3, afrika=4, awstraliq=5
+	В началото има 1 заразен човек в даден държава(континент). 
+	На всяка стъпка всеки заразен човек има шанс да зарази нов.
+	х и у на новия ще бъдат +- Math.random()
+Eurasia = 0, North America = 1 , South America = 2, Africa = 3, Australia = 4
