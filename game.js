@@ -21,18 +21,23 @@ middleContext.imageSmoothingEnabled = false;
 middleContext.globalAlpha = 0.5;
 
 var date = new Date(), speed = 100, updates = 0;
+var dayLength = 100, updates = 0;
 
 function update() {
     updates++;
-    if (updates >= speed) {
+    dayHandler();
+};
+function dayHandler() {
+    if (updates >= dayLength) {
         date.setDate(date.getDate() + 1);
         updates = 0;
+        eventHandler.update();
     }
-}
+};
 function draw() {
     context.fillStyle="black";
     context.font="20px Georgia";
-    context.fillText(date.getDate() + '.'+ date.getMonth() + '.' + date.getFullYear(),50,50);
+    context.fillText(date.getDate() + '.'+ date.getMonth() + '.' + date.getFullYear() + '|' + eventHandler.currentEventName,50,50);
 }
 function keyup(key) {
     console.log("Pressed", key);
@@ -48,11 +53,3 @@ function mouseup() {
     if (pixel[1] == 177) console.log("Eurasia");
     if (pixel[1] == 71) console.log("Australia");
 };
-
-class Human{
-    constructor(x_, y_, country_) {
-        this.x = x_;
-        this.y = y_;
-        this.country = country_;
-    }
-}
