@@ -8,14 +8,14 @@ let backContext = backCanvas.getContext('2d');
 let back_img = new Image();
 back_img.src = 'countries_backend.jpg';
 setTimeout( () => {
-  backContext.drawImage(back_img, 0, 0, 800, 600)
+  backContext.drawImage(back_img, 0, 0, 800, 600);
 }, 100);
 let middleCanvas = document.getElementById('canvas-middle');
 let middleContext = middleCanvas.getContext('2d');
 let middle_img = new Image();
 middle_img.src = 'countries.jpg';
 setTimeout( () => {
-  middleContext.drawImage(middle_img, 0, 0, 800, 600)
+  middleContext.drawImage(middle_img, 0, 0, 800, 600);
 }, 20);
 middleContext.imageSmoothingEnabled = false;
 var date = new Date(), speed = 100, updates = 0;
@@ -24,6 +24,7 @@ var dayLength = 100, updates = 0;
 function update() {
     updates++;
     dayHandler();
+    for (let curr_airplane of airplanes) curr_airplane.update();
 };
 function dayHandler() {
     if (updates >= dayLength) {
@@ -37,6 +38,7 @@ function draw() {
     context.font="20px Consolas";
     context.fillText(date.getDate() + '.'+ (date.getMonth() + 1) + '.' + date.getFullYear() + '|' + eventHandler.currentEventName,50,50);
     for (let curr_airport of airports) curr_airport.draw();
+    for (let curr_airplane of airplanes) curr_airplane.draw();
 }
 function keyup(key) {
     console.log("Pressed", key);
