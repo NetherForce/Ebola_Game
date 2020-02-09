@@ -34,8 +34,8 @@ function dayHandler() {
 };
 function draw() {
     context.fillStyle="black";
-    context.font="20px Georgia";
-    context.fillText(date.getDate() + '.'+ date.getMonth() + '.' + date.getFullYear() + '|' + eventHandler.currentEventName,50,50);
+    context.font="20px Consolas";
+    context.fillText(date.getDate() + '.'+ (date.getMonth() + 1) + '.' + date.getFullYear() + '|' + eventHandler.currentEventName,50,50);
 }
 function keyup(key) {
     console.log("Pressed", key);
