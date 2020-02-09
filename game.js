@@ -37,6 +37,7 @@ function draw() {
     context.fillStyle="black";
     context.font="20px Consolas";
     context.fillText(date.getDate() + '.'+ (date.getMonth() + 1) + '.' + date.getFullYear() + '|' + eventHandler.currentEventName,50,50);
+    for (let curr_airport of airports) curr_airport.draw();
 }
 function keyup(key) {
     console.log("Pressed", key);
