@@ -83,11 +83,21 @@ class Data{
 }
 var data = new Data(1, 1, 2020, 0, "black","");
 function update() {
+<<<<<<< HEAD
 	data.update();
 }
 
 function draw() {
 	data.draw();
+=======
+	// Napisanoto tuk se izpulnqva otnovo i otnovo mnogo puti v sekunda
+    
+}
+
+function draw() {
+	// tuk naprogramirai kakvo da se risuva
+    
+>>>>>>> a205fccfe825ca9b9843da34406b341a5bb2b628
 }
 
 function keyup(key) {
