@@ -1,3 +1,4 @@
+var date = new Date();
 // North America 237 27 36
 // South America 255 127 38
 // Africa        254 242 0
@@ -102,16 +103,36 @@ class Data{
 	}
 }
 var data = new Data(1, 1, 2020, 0, "black","");
+>>>>>>> 27d96e6451598f2ed7743c89da0b934f92b83616
 function update() {
 	data.update();
 }
 function draw() {
 	data.draw();
 }
+<<<<<<< HEAD
+function changeDate() {
+    
+};
+
+=======
+>>>>>>> 27d96e6451598f2ed7743c89da0b934f92b83616
 function keyup(key) {
     console.log("Pressed", key);
 };
 function mouseup() {
+<<<<<<< HEAD
+	// Show coordinates of mouse on click
+	console.log("Mouse clicked at", mouseX, mouseY);
+}
+class Human{
+    constructor(x_, y_, country_) {
+        this.x = x_;
+        this.y = y_;
+        this.country = country_;
+    }
+}
+=======
     console.log("Mouse clicked at", mouseX, mouseY);
     // Check which continent is clicked
     let pixel = backContext.getImageData(mouseX, mouseY, 1, 1).data;
@@ -121,3 +142,4 @@ function mouseup() {
     if (pixel[1] == 177) console.log("Eurasia");
     if (pixel[1] == 71) console.log("Australia");
 };
+>>>>>>> 27d96e6451598f2ed7743c89da0b934f92b83616
