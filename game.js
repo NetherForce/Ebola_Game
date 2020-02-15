@@ -19,7 +19,7 @@ setTimeout( () => {
 }, 20);
 middleContext.imageSmoothingEnabled = false;
 var date = new Date(), speed = 100, updates = 0;
-var dayLength = 100, updates = 0;
+var dayLength = 100;
 
 function update() {
     updates++;
@@ -31,7 +31,6 @@ function dayHandler() {
         date.setDate(date.getDate() + 1);
         updates = 0;
         eventHandler.update();
-        
         testVirus.updatePerDay();
     }
 };
@@ -55,6 +54,6 @@ function mouseup() {
     if (pixel[1] == 242) console.log("Africa");
     if (pixel[1] == 177) console.log("Eurasia");
     if (pixel[1] == 71) console.log("Australia");
-    
+
     testVirus.start(mouseX, mouseY);
 };

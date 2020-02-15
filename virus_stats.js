@@ -1,3 +1,4 @@
+let contInd = []; contInd[177] = 0; contInd[127] = 1; contInd[27] = 2; contInd[242] = 3; contInd[71] = 4;
 class Virus{
     constructor(type_){
         this.type = type_;
@@ -9,7 +10,7 @@ class Virus{
         this.brDead = 0;
         this.infectedIn = [0, 0, 0, 0, 0];
         this.maxInfectedIn = [2000000000, 1500000000, 1500000000, 500000000, 500000000];
-        this.maxZaRisuvaneIn = [10000, 7500, 7500, 5000, 5000]
+        this.maxZaRisuvaneIn = [10000, 10000, 7500, 5000, 5000]
         this.DNA = 0;
         this.DNAPerDay = 1;
         this.personDorRadius = 3;
@@ -18,48 +19,22 @@ class Virus{
             severity: 0,
             lethality: 0
         };
-        // Eurasia=0, Severna amerika=1, Ushna amerika=2, Afrika=3, Awstraliq=4
+        // Eurasia=0, Severna Amerika=1, Ushna Amerika=2, Afrika=3, Awstraliq=4
     }
     drawRedDot(x_, y_){
         middleContext.fillStyle = "red";
         middleContext.beginPath();
         middleContext.arc(x_, y_, this.personDorRadius, 0, Math.PI*2);
         middleContext.fill();
+        middleContext.closePath();
     }
     start(x_, y_){
-        if(this.hasStarted==false){
-            let pixel = backContext.getImageData(x_, y_, 1, 1).data;
-            if (pixel[1] == 27){
-                this.infectedIn[2]++;
-                this.brInfected++;
-                this.drawRedDot(x_, y_);
-                this.hasStarted = true;
-            }
-            if (pixel[1] == 127){
-                this.infectedIn[1]++;
-                this.brInfected++;
-                this.drawRedDot(x_, y_);
-                this.hasStarted = true;
-            }
-            if (pixel[1] == 242){
-                this.infectedIn[3]++;
-                this.brInfected++;
-                this.drawRedDot(x_, y_);
-                this.hasStarted = true;
-            }
-            if (pixel[1] == 177){
-                this.infectedIn[0]++;
-                this.brInfected++;
-                this.drawRedDot(x_, y_);
-                this.hasStarted = true;
-            }
-            if (pixel[1] == 71){
-                this.infectedIn[4]++;
-                this.brInfected++;
-                this.drawRedDot(x_, y_);
-                this.hasStarted = true;
-            }
-        }
+        if (this.hasStarted) return;
+        let pixel = backContext.getImageData(x_, y_, 1, 1).data;
+        this.infectedIn[contInd[pixel[1]]]++;
+        this.brInfected++;
+        this.drawRedDot(x_, y_);
+        this.hasStarted = true;
     }
     infectivityChange(howMuch_){
         this.infectivity += howMuch_;
@@ -79,57 +54,13 @@ class Virus{
     }
     drawAPointOnARandomSpot(br_, continentIndex_){
         for(let i=0; i<br_; i++){
-            let x_ = Math.floor(Math.random()*canvas.width);
-            let y_ = Math.floor(Math.random()*canvas.height);
-            
-            let pixel = backContext.getImageData(x_, y_, 1, 1).data;
-            let isGood = false;
-            
-            if (pixel[1] == 27 && continentIndex_ == 2){
-                isGood = true;
-                //console.log(2);
-            }
-            if (pixel[1] == 127 && continentIndex_ == 1){
-                isGood = true;
-                //console.log(1);
-            }
-            if (pixel[1] == 242 && continentIndex_ == 3){
-                isGood = true;
-                //console.log(3);
-            }
-            if (pixel[1] == 177 && continentIndex_ == 0){
-                isGood = true;
-                //console.log(0);
-            }
-            if (pixel[1] == 71 && continentIndex_ == 4){
-                isGood = true;
-                //console.log(4);
-            }
-            
-            while(isGood == false){
+            let isGood = false, x_, y_;
+            while(!isGood){
                 x_ = Math.floor(Math.random()*canvas.width);
                 y_ = Math.floor(Math.random()*canvas.height);
-
-                pixel = backContext.getImageData(x_, y_, 1, 1).data;
-                isGood = false;
-
-                if (pixel[1] == 27 && continentIndex_ == 2){
-                    isGood = true;
-                }
-                if (pixel[1] == 127 && continentIndex_ == 1){
-                    isGood = true;
-                }
-                if (pixel[1] == 242 && continentIndex_ == 3){
-                    isGood = true;
-                }
-                if (pixel[1] == 177 && continentIndex_ == 0){
-                    isGood = true;
-                }
-                if (pixel[1] == 71 && continentIndex_ == 4){
-                    isGood = true;
-                }
+                let pixel = backContext.getImageData(x_, y_, 1, 1).data;
+                isGood = (contInd[pixel[1]] == continentIndex_);
             }
-            
             this.drawRedDot(x_, y_);
         }
     }
@@ -141,14 +72,15 @@ class Virus{
                 if(this.infectedIn[i] + novozarazeni > this.maxInfectedIn[i]){
                    novozarazeni = this.maxInfectedIn[i] - this.infectedIn[i];
                 }
-                
+
                 if(this.infectedIn[i] + novozarazeni < this.maxZaRisuvaneIn[i]){
                     this.drawAPointOnARandomSpot(novozarazeni, i);
                 }else{
                     this.drawAPointOnARandomSpot(this.maxZaRisuvaneIn[i]-this.infectedIn[i], i);
                 }
-            
+
                 this.infectedIn[i] += novozarazeni;
+                this.brInfected += novozarazeni;
             }
 
             let b = Math.random();
