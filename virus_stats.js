@@ -2,12 +2,14 @@ class Virus{
     constructor(type_){
         this.type = type_;
         this.hasStarted = false;
-        this.infectivity = 90;
+        this.infectivity = 10;
         this.severity = 0;
         this.lethality = 0;
         this.brInfected = 0;
         this.brDead = 0;
         this.infectedIn = [0, 0, 0, 0, 0];
+        this.maxInfectedIn = [2000000000, 1500000000, 1500000000, 500000000, 500000000];
+        this.maxZaRisuvaneIn = [10000, 7500, 7500, 5000, 5000]
         this.DNA = 0;
         this.DNAPerDay = 1;
         this.personDorRadius = 3;
@@ -85,18 +87,23 @@ class Virus{
             
             if (pixel[1] == 27 && continentIndex_ == 2){
                 isGood = true;
+                //console.log(2);
             }
             if (pixel[1] == 127 && continentIndex_ == 1){
                 isGood = true;
+                //console.log(1);
             }
             if (pixel[1] == 242 && continentIndex_ == 3){
                 isGood = true;
+                //console.log(3);
             }
             if (pixel[1] == 177 && continentIndex_ == 0){
                 isGood = true;
+                //console.log(0);
             }
             if (pixel[1] == 71 && continentIndex_ == 4){
                 isGood = true;
+                //console.log(4);
             }
             
             while(isGood == false){
@@ -123,20 +130,25 @@ class Virus{
                 }
             }
             
-            console.log("asdfasdfasdf");
-            
             this.drawRedDot(x_, y_);
         }
     }
     updatePerDay(){
-        console.log("asdf");
         for(let i=0; i<this.infectedIn.length; i++){
             let a = Math.random();
             if(a<(this.infectivity+this.bonus.infectivity)/100){
                 let novozarazeni = Math.ceil(this.infectedIn[i] * (1 + Math.random()));
+                if(this.infectedIn[i] + novozarazeni > this.maxInfectedIn[i]){
+                   novozarazeni = this.maxInfectedIn[i] - this.infectedIn[i];
+                }
+                
+                if(this.infectedIn[i] + novozarazeni < this.maxZaRisuvaneIn[i]){
+                    this.drawAPointOnARandomSpot(novozarazeni, i);
+                }else{
+                    this.drawAPointOnARandomSpot(this.maxZaRisuvaneIn[i]-this.infectedIn[i], i);
+                }
+            
                 this.infectedIn[i] += novozarazeni;
-                this.drawAPointOnARandomSpot(novozarazeni, i);
-                console.log("asdfasdf");
             }
 
             let b = Math.random();
