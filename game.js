@@ -31,6 +31,8 @@ function dayHandler() {
         date.setDate(date.getDate() + 1);
         updates = 0;
         eventHandler.update();
+        
+        testVirus.updatePerDay();
     }
 };
 function draw() {
@@ -53,4 +55,6 @@ function mouseup() {
     if (pixel[1] == 242) console.log("Africa");
     if (pixel[1] == 177) console.log("Eurasia");
     if (pixel[1] == 71) console.log("Australia");
+    
+    testVirus.start(mouseX, mouseY);
 };
