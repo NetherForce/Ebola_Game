@@ -1,6 +1,6 @@
 let airport_img = new Image, normal_airplane_img = new Image, infected_airplane_img = new Image;
 airport_img.src = 'airport.png'; normal_airplane_img.src = 'normal_airplane.png'; infected_airplane_img.src = 'infected_airplane.png';
-let airport_heigth = 24, airport_width = 60, h_w = airport_width / 2, h_h = airport_heigth / 2;
+let airport_height = 24, airport_width = 60, h_w = airport_width / 2, h_h = airport_height / 2;
 class Airport {
   constructor(continent, index, x, y) {
     this.continent = continent;
@@ -9,7 +9,7 @@ class Airport {
     this.y = y;
   }
   draw() {
-    context.drawImage(airport_img, this.x, this.y, airport_width, airport_heigth);
+    context.drawImage(airport_img, this.x, this.y, airport_width, airport_height);
   }
 }
 class Airplane {
@@ -26,6 +26,7 @@ class Airplane {
     this.img = normal_airplane_img;
   }
   update() {
+    // Move airplanes until it arrives to destination
     if (--this.t < 0) return;
     this.x += this.dX;
     this.y += this.dY;
@@ -38,6 +39,10 @@ class Airplane {
     context.restore();
   }
 }
-let airports = [new Airport('Eurasia', 0, 520, 170), new Airport('North America', 1, 95, 175),
-new Airport('South America', 2, 200, 320), new Airport('Africa', 3, 365, 245), new Airport('Australia', 4, 665, 355)];
-let airplanes = [];
+let airports = [], airplanes = [];
+// Create main Airports
+airports.push(new Airport('Eurasia', 0, 520, 170));
+airports.push(new Airport('North America', 1, 95, 175));
+airports.push(new Airport('South America', 2, 200, 320));
+airports.push(new Airport('Africa', 3, 365, 245));
+airports.push(new Airport('Australia', 4, 665, 355));

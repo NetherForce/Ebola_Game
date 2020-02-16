@@ -35,17 +35,21 @@ function dayHandler() {
     }
 };
 function draw() {
-    context.fillStyle="black";
-    context.font="20px Consolas";
-    context.fillText(date.getDate() + '.'+ (date.getMonth() + 1) + '.' + date.getFullYear() + '|' + eventHandler.currentEventName,50,50);
+    context.fillStyle = "black";
+    context.font = "20px Consolas";
+    context.fillText(date.getDate() + '.'+ (date.getMonth() + 1) + '.' + date.getFullYear() + '|' + eventHandler.currentEventName, 800, 50);
     for (let curr_airport of airports) curr_airport.draw();
     for (let curr_airplane of airplanes) curr_airplane.draw();
+    // Draw current stats for the Virus
+    context.fillText('DNA: ' + testVirus.DNA, 800, 200);
+    drawStat('Infectivity', testVirus.infectivity, 800, 220, 400, 25, "Pink");
+    drawStat('Severity', testVirus.severity, 800, 280, 400, 25, "#e6e600");
+    drawStat('Lethality', testVirus.lethality, 800, 340, 400, 25, "Purple");
 }
 function keyup(key) {
     console.log("Pressed", key);
 };
 function mouseup() {
-	// Show coordinates of mouse on click
     console.log("Mouse clicked at", mouseX, mouseY);
     // Check which continent is clicked
     let pixel = backContext.getImageData(mouseX, mouseY, 1, 1).data;

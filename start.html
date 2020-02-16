@@ -11,12 +11,21 @@
         canvas {
           position: absolute;
         }
+        #news {
+          position: fixed;
+          top: 100px;
+          left: 800px;
+          width: 400px;
+          border-style: groove;
+          user-select: none;
+        }
     </style>
 </head>
     <body  onload="init()">
       <canvas id="canvas-back" width="800" height="600"></canvas>
       <canvas id="canvas-middle" width="800" height="600"></canvas>
       <canvas id="canvas-id" width="800" height="600">
+
            <script>
             function areColliding(Ax, Ay, Awidth, Aheight, Bx, By, Bwidth, Bheight) {
                 if (Bx <= Ax + Awidth) {
@@ -52,6 +61,15 @@
             var isKeyPressed = [];
             for (i = 0; i < 256; ++i) {
                 isKeyPressed.push(0);
+            }
+            var endlessCanvas = true;
+            if (endlessCanvas) {
+               canvas.width = window.innerWidth;
+               canvas.height = window.innerHeight;
+               window.onresize = function () {
+                   canvas.width = window.innerWidth;
+                   canvas.height = window.innerHeight;
+               };
             }
             // gridSize = 50; // uncomment or add to game.js if you want a grid
             var reqAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {
@@ -159,5 +177,6 @@
             //version 11- edited by ivo i iashu. LOADED IMAGES ADDED! Should be fine with all touchscreendevices.
             </script>
         </canvas>
+        <div id="news"><h5> The world is going to end. - Baba Vanga.<br> Don't quote me on that. - also Baba Vanga</h5> </div>
     </body>
 </html>
