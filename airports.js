@@ -13,21 +13,25 @@ class Airport {
     }
 }
 class Airplane {
-    constructor(startX, startY, endX, endY, speed) {
-        this.x = startX;
-        this.y = startY;
-        this.distance = Math.sqrt((endX - startX) * (endX - startX) + (endY - startY) * (endY - startY));
-        this.speed = speed;
-        this.t = this.distance / this.speed;
-        this.dX = (endX - startX) / this.t;
-        this.dY = (endY - startY) / this.t;
-        this.angle = Math.atan2(endY - startY, endX - startX);
+    constructor(start_ind, end_ind, speed, type) {
+        this.x = airports[start_ind].x;
+        this.y = airports[start_ind].y;
+        let temp_x = airports[end_ind].x - this.x, temp_y = airports[end_ind].y - this.y;
+        this.t = Math.sqrt(temp_x * temp_x + temp_y * temp_y) / speed;
+        this.dX = temp_x / this.t;
+        this.dY = temp_y / this.t;
+        this.angle = Math.atan2(temp_y, temp_x);
         if (this.angle < 0) this.angle += 2 * Math.PI;
-        this.img = normal_airplane_img;
+        this.type = type;
+        this.img = (this.type == 'normal') ? normal_airplane_img : infected_airplane_img;
+        this.end_ind = end_ind;
     }
     update() {
         // Move airplanes until it arrives to destination
-        if (--this.t < 0) return;
+        if (--this.t < 0) {
+          testVirus.infectedIn[this.end_ind] += (this.type == 'infected');
+          return;
+        }
         this.x += this.dX;
         this.y += this.dY;
     }
@@ -39,8 +43,8 @@ class Airplane {
         context.restore();
     }
 }
-let airports = [], airplanes = [];
 let flights_per_day = 10, flight_speed = 5;
+let airports = [], airplanes = [];
 // Create main Airports
 airports.push(new Airport('Eurasia', 0, 520, 170));
 airports.push(new Airport('North America', 1, 95, 175));

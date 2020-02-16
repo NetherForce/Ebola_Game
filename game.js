@@ -30,7 +30,7 @@ function update() {
     }
 };
 function dayHandler() {
-    if (updates >= dayLength) {
+    if (testVirus.hasStarted && updates >= dayLength) {
         date.setDate(date.getDate() + 1);
         updates = 0;
         eventHandler.update();
@@ -40,7 +40,11 @@ function dayHandler() {
           let end_ind = Math.floor(Math.random() * airports.length);
           if (start_ind != end_ind) { // Check if airports don't match
             // Create new Airplane
-            airplanes.push(new Airplane(airports[start_ind].x, airports[start_ind].y, airports[end_ind].x, airports[end_ind].y, flight_speed));
+            // Check if the airplane is from an infected continent and if it's going to a uninfected continent
+            let flag = (testVirus.infectedIn[start_ind] > 0 && testVirus.infectedIn[end_ind] == 0);
+            // Choose plane type in terms of a random chance
+            let type = (flag && Math.random() < testVirus.planeInfectivity / 100) ? 'infected' : 'normal';
+            airplanes.push(new Airplane(start_ind, end_ind, flight_speed, type));
             --flights_per_day;
           }
         }
@@ -58,6 +62,8 @@ function draw() {
     drawStat('Infectivity', testVirus.infectivity, 800, 220, 400, 25, "Pink");
     drawStat('Severity', testVirus.severity, 800, 280, 400, 25, "#e6e600");
     drawStat('Lethality', testVirus.lethality, 800, 340, 400, 25, "Purple");
+    drawStat('Cure', cure.percents, 800, 400, 400, 25, "Cyan");
+
 }
 function keyup(key) {
     console.log("Pressed", key);

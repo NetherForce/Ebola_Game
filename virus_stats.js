@@ -1,12 +1,12 @@
-let contInd = []; contInd[177] = 0; contInd[127] = 1; contInd[27] = 2; contInd[242] = 3; contInd[71] = 4;
-class Virus{
+let contInd = []; contInd[177] = 0; contInd[27] = 1; contInd[127] = 2; contInd[242] = 3; contInd[71] = 4;
+class Virus {
     constructor(type_) {
         this.type = type_;
         this.hasStarted = false;
-        this.infectivity = 100;
-        this.planeInfectivity = 5;
+        this.infectivity = 0;
         this.severity = 0;
         this.lethality = 0;
+        this.planeInfectivity = 0;
         this.brInfected = 0;
         this.brDead = 0;
         this.deadIn = [0, 0, 0, 0, 0]
@@ -24,10 +24,6 @@ class Virus{
     }
     drawRedDot(x_, y_) {
         middleContext.fillStyle = "red";
-        /*middleContext.beginPath();
-        middleContext.arc(x_, y_, this.personDorRadius, 0, Math.PI*2);
-        middleContext.fill();
-        middleContext.closePath();*/
         middleContext.fillRect(x_, y_, 1, 1);
     }
     start(x_, y_) {
@@ -35,8 +31,8 @@ class Virus{
         let pixel = backContext.getImageData(x_, y_, 1, 1).data;
         // Checking if clicked on a continent
         if (typeof contInd[pixel[1]] === 'undefined') return;
-        this.infectedIn[contInd[pixel[1]]]++;
-        this.brInfected++;
+        ++this.infectedIn[contInd[pixel[1]]];
+        ++this.brInfected;
         this.drawRedDot(x_, y_);
         this.hasStarted = true;
     }

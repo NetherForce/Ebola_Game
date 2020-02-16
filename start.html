@@ -17,6 +17,7 @@
           left: 800px;
           width: 400px;
           border-style: groove;
+          border-width: thick;
           user-select: none;
         }
     </style>
@@ -25,21 +26,8 @@
       <canvas id="canvas-back" width="800" height="600"></canvas>
       <canvas id="canvas-middle" width="800" height="600"></canvas>
       <canvas id="canvas-id" width="800" height="600">
-           <script>
-            function areColliding(Ax, Ay, Awidth, Aheight, Bx, By, Bwidth, Bheight) {
-                if (Bx <= Ax + Awidth) {
-                    if (Ax <= Bx + Bwidth) {
-                        if (By <= Ay + Aheight) {
-                            if (Ay <= By + Bheight) {
-                                return 1;
-                            }
-                        }
-                    }
-                }
-                return 0;
-            };
-           </script>
            <script src="virus_stats.js"></script>
+           <script src="cure.js"></script>
            <script src="events.js"></script>
            <script src="airports.js"></script>
            <script src="game.js"></script>
@@ -70,7 +58,6 @@
                    canvas.height = window.innerHeight;
                };
             }
-            // gridSize = 50; // uncomment or add to game.js if you want a grid
             var reqAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {
                 setTimeout(callback, 1000 / 30);
             };
@@ -78,24 +65,7 @@
                 context.clearRect(0, 0, canvas.width, canvas.height);
                 draw(); // call progammer's draw() function
                 context.globalAlpha = 1;
-                // draw grid
-                // context.fillStyle = "#FF0000";
                 context.font = "10px Arial";
-                if (typeof gridSize != "undefined" && gridSize >= 25) {
-                    context.fillText(0, 4, 10);
-                    context.beginPath();
-                    for (i = gridSize; i < canvas.width; i += gridSize) {
-                        context.moveTo(i, 0);
-                        context.lineTo(i, canvas.height);
-                        context.fillText(i, i + 4, 10);
-                    }
-                    for (i = gridSize; i < canvas.height; i += gridSize) {
-                        context.moveTo(0, i);
-                        context.lineTo(canvas.width, i);
-                        context.fillText(i, 4, i + 10);
-                    }
-                    context.stroke();
-                }
 
                 reqAnimationFrame(redraw);
             };
@@ -176,6 +146,6 @@
             //version 11- edited by ivo i iashu. LOADED IMAGES ADDED! Should be fine with all touchscreendevices.
             </script>
         </canvas>
-        <div id="news"><h5> The world is going to end. - Baba Vanga.<br> Don't quote me on that. - also Baba Vanga</h5> </div>
+        <div id="news"><h5>The world is going to end. - Baba Vanga.<br>Don't quote me on that. - also Baba Vanga</h5></div>
     </body>
 </html>
