@@ -3,14 +3,16 @@ class Virus{
     constructor(type_) {
         this.type = type_;
         this.hasStarted = false;
-        this.infectivity = 10;
+        this.infectivity = 100;
+        this.planeInfectivity = 5;
         this.severity = 0;
         this.lethality = 0;
         this.brInfected = 0;
         this.brDead = 0;
+        this.deadIn = [0, 0, 0, 0, 0]
         this.infectedIn = [0, 0, 0, 0, 0];
         this.maxInfectedIn = [2000000000, 1500000000, 1500000000, 500000000, 500000000];
-        this.maxZaRisuvaneIn = [10000, 10000, 7500, 5000, 5000]
+        this.maxZaRisuvaneIn = [100000, 100000, 75000, 50000, 50000]
         this.DNA = 0;
         this.DNAPerDay = 1;
         this.bonus = {
@@ -22,6 +24,10 @@ class Virus{
     }
     drawRedDot(x_, y_) {
         middleContext.fillStyle = "red";
+        /*middleContext.beginPath();
+        middleContext.arc(x_, y_, this.personDorRadius, 0, Math.PI*2);
+        middleContext.fill();
+        middleContext.closePath();*/
         middleContext.fillRect(x_, y_, 1, 1);
     }
     start(x_, y_) {
