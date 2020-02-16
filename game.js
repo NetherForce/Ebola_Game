@@ -24,7 +24,10 @@ var dayLength = 100;
 function update() {
     updates++;
     dayHandler();
-    for (let curr_airplane of airplanes) curr_airplane.update();
+    for (let i = 0; i < airplanes.length; ++i) {
+      airplanes[i].update();
+      if (airplanes[i].t <= -50) airplanes.splice(i, 1);
+    }
 };
 function dayHandler() {
     if (updates >= dayLength) {
@@ -32,6 +35,16 @@ function dayHandler() {
         updates = 0;
         eventHandler.update();
         testVirus.updatePerDay();
+        while (flights_per_day > 0) {
+          let start_ind = Math.floor(Math.random() * airports.length);
+          let end_ind = Math.floor(Math.random() * airports.length);
+          if (start_ind != end_ind) { // Check if airports don't match
+            // Create new Airplane
+            airplanes.push(new Airplane(airports[start_ind].x, airports[start_ind].y, airports[end_ind].x, airports[end_ind].y, flight_speed));
+            --flights_per_day;
+          }
+        }
+        flights_per_day = 10;
     }
 };
 function draw() {

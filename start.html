@@ -25,7 +25,6 @@
       <canvas id="canvas-back" width="800" height="600"></canvas>
       <canvas id="canvas-middle" width="800" height="600"></canvas>
       <canvas id="canvas-id" width="800" height="600">
-
            <script>
             function areColliding(Ax, Ay, Awidth, Aheight, Bx, By, Bwidth, Bheight) {
                 if (Bx <= Ax + Awidth) {
@@ -80,7 +79,7 @@
                 draw(); // call progammer's draw() function
                 context.globalAlpha = 1;
                 // draw grid
-                //context.fillStyle = "#FF0000";
+                // context.fillStyle = "#FF0000";
                 context.font = "10px Arial";
                 if (typeof gridSize != "undefined" && gridSize >= 25) {
                     context.fillText(0, 4, 10);
