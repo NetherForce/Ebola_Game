@@ -15,7 +15,6 @@ class Virus{
         this.maxZaRisuvaneIn = [100000, 100000, 75000, 50000, 50000]
         this.DNA = 0;
         this.DNAPerDay = 1;
-        this.personDorRadius = 3;
         this.bonus={
             infectivity: 0,
             severity: 0,
@@ -34,6 +33,7 @@ class Virus{
     start(x_, y_){
         if (this.hasStarted) return;
         let pixel = backContext.getImageData(x_, y_, 1, 1).data;
+        if (typeof contInd[pixel[1]] === 'undefined') return;
         this.infectedIn[contInd[pixel[1]]]++;
         this.brInfected++;
         this.drawRedDot(x_, y_);
@@ -94,5 +94,12 @@ class Virus{
             }
         }
     }
+}
+// Draw stat box and handle text
+function drawStat(text, stat, x, y, width, height, color) {
+  context.fillStyle = color;
+  context.fillText(text, x, y);
+  context.strokeRect(x, y + 10, width, height);
+  context.fillRect(x, y + 10, width * stat / 100, height);
 }
 var testVirus = new Virus('type');
