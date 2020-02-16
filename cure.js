@@ -1,31 +1,31 @@
-class Cure{
-	constructor(isItFound, percents, timeToNewPercents, time, x, y, color, font){
-		this.isItFound = isItFound;
-		this.percents = percents;
-		this.timeToNewPercents = timeToNewPercents;
-		this.time = time;
-		this.x = x;
-		this.y = y;
-		this.color = color;
-		this.font = font;
+class Cure {
+	constructor() {
+		this.isItFound = false;
+		this.percents = 0;
+		this.timeToNewPercents = 0;
 	}
-	update(){
-		this.time++;
-		if(this.isItFound == true){
-			if(this.time % this.timeToNewPercents == 0){
+	update() {
+    let visusche = testVirus;
+    this.timeToNewPercents = 1100 - visusche.severity * 10;
+		if (this.isItFound == true) {
+			if (updates % this.timeToNewPercents == 0) {
 				this.percents++;
 			}
-		}
-		if(this.percents >= 100){
-			// Game over
-		}
-	}
-	draw(){
-		if(button[0].seeing == true){ 
-			context.fillStyle = this.color;
-			context.font = this.font + "px Ariel";
-			context.fillText("Cure: " + this.percents + " %", this.x, this.y);
+		} else if(visusche.brDead > 100000) {
+			this.isItFound = true;
+    }
+		if (this.percents >= 100) {
+			this.percents = 100;
+      for (let i = 0; i < visusche.infectedIn.length; i++) {
+          if (visusche.infectedIn[i] > 10) {
+              visusche.brInfected -= visusche.infectedIn[i]/10;
+              visusche.infectedIn[i] -= visusche.infectedIn[i]/10;
+          } else {
+              visusche.brInfected -= visusche.infectedIn[i];
+              visusche.infectedIn[i] = 0;
+          }
+      }
 		}
 	}
 }
-var cure = new Cure(false, 0, 750, 0, 925, 400, "aqua", 60);
+var cure = new Cure();
