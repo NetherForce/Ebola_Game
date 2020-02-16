@@ -14,9 +14,27 @@
     </style>
 </head>
     <body  onload="init()">
-      <canvas id="canvas-back" width="800" height="600"></canvas>
-      <canvas id="canvas-middle" width="800" height="600"></canvas>
-      <canvas id="canvas-id" width="800" height="600">
+    <link rel="stylesheet" href="style.css">
+      <div id="canvases">   
+          <canvas id="canvas-back" width="800" height="600"></canvas>
+          <canvas id="canvas-middle" width="800" height="600"></canvas>
+          <canvas id="canvas-id" width="800" height="600"></canvas>
+      </div>
+        <button onclick="toggleUpgradesMenu()" style="position: absolute" id="menuButton">Upgrades</button>
+        <div id="menu" style="position: absolute; left: 80px; top: 100px; display: none">
+            <table id="table">
+                <tr>
+                    <th><button onclick="upgradeVirus(0)" id="upInfBtn">Upgrade Infectivity</button></th>
+                    <th><button onclick="upgradeVirus(1)" id="upSevBtn">Upgrade Severity</button></th>
+                    <th><button onclick="upgradeVirus(2)" id="upLetBtn">Upgrade Lethality</button></th>
+                </tr>
+                <tr>
+                    <th>Infectivity:%</th>
+                    <th>Severity:%</th>
+                    <th>Lethality:%</th>
+                </tr>
+            </table>
+            </div>
            <script>
             function areColliding(Ax, Ay, Awidth, Aheight, Bx, By, Bwidth, Bheight) {
                 if (Bx <= Ax + Awidth) {
@@ -35,6 +53,7 @@
            <script src="events.js"></script>
            <script src="airports.js"></script>
            <script src="game.js"></script>
+           <script src="upgrades_menu.js"></script>
            <script>
             const canvas = document.getElementById("canvas-id");
             var context = canvas.getContext("2d");
@@ -158,6 +177,5 @@
             };
             //version 11- edited by ivo i iashu. LOADED IMAGES ADDED! Should be fine with all touchscreendevices.
             </script>
-        </canvas>
     </body>
 </html>

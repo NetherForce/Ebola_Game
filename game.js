@@ -3,6 +3,7 @@
 // Africa        254 242 0
 // Eurasia       35 177 77
 // Australia     63 71 204
+var isPaused = false;
 let backCanvas = document.getElementById('canvas-back');
 let backContext = backCanvas.getContext('2d');
 let back_img = new Image();
@@ -27,7 +28,7 @@ function update() {
     for (let curr_airplane of airplanes) curr_airplane.update();
 };
 function dayHandler() {
-    if (updates >= dayLength) {
+    if (updates >= dayLength && !isPaused) {
         date.setDate(date.getDate() + 1);
         updates = 0;
         eventHandler.update();
