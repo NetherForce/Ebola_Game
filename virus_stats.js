@@ -3,7 +3,7 @@ class Virus {
     constructor(type_) {
         this.type = type_;
         this.hasStarted = false;
-        this.infectivity = 0;
+        this.infectivity = 10;
         this.severity = 0;
         this.lethality = 0;
         this.planeInfectivity = 0;

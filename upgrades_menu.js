@@ -1,8 +1,8 @@
-let requiredDNA = [], nextUpgradeId = [0, 0, 0], upgrades = []; 
+let requiredDNA = [], nextUpgradeId = [0, 0, 0], upgrades = [];
 requiredDNA[0] = [10, 20, 30, 40]; requiredDNA[1] = [10, 20, 30, 40]; requiredDNA[2] = [10, 20, 30, 40];
 upgrades[0] = [5, 10, 10, 10];
 let table = document.getElementById('table'), upInfBtn = document.getElementById('upInfBtn'), upSevBtn = document.getElementById('upSevBtn'), upLetBtn = document.getElementById('upLetBtn');
-function toggleUpgradesMenu(){
+function toggleUpgradesMenu() {
     if (document.getElementById('menu').style.display === 'none') {
         document.getElementById('menu').style.display = 'block';
         document.getElementById('canvases').style.display = 'none';
