@@ -23,6 +23,6 @@ var eventHandler = {events: [], currentEventName: 'No events going on', update: 
 }};
 eventHandler.events.push(new Event('1.1', '2.1', function(a) { testVirus.bonus.infectivity += a * 3; }, 'New Year', 1));
 eventHandler.events.push(new Event('14.2', '15.2', function(a) { testVirus.bonus.infectivity += a * 10; }, "Valentine's Day", 1));
-eventHandler.events.push(new Event('10.6', '30.6', function(a){ testVirus.bonus.severity += a * 15; }, "Olympic Games", 4));
-eventHandler.events.push(new Event('13.9', '14.9', function(a){ testVirus.bonus.infectivity += a * 20; }, "World's No Condom Day", 1));
-eventHandler.events.push(new Event('1.11', '30.11', function(a){ testVirus.bonus.infectivity += a * (-20); }, "No Nut November", 1));
+eventHandler.events.push(new Event('10.6', '30.6', function(a) { testVirus.bonus.severity += a * 15; }, "Olympic Games", 4));
+eventHandler.events.push(new Event('13.9', '14.9', function(a) { testVirus.bonus.infectivity += a * 20; }, "World's No Condom Day", 1));
+eventHandler.events.push(new Event('1.11', '30.11', function(a) { testVirus.bonus.infectivity += a * (-20); }, "No Nut November", 1));
