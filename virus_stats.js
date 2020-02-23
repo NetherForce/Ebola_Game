@@ -3,7 +3,7 @@ class Virus{
     constructor(type_){
         this.type = type_;
         this.hasStarted = false;
-        this.infectivity = 100;
+        this.infectivity = 10;
         this.planeInfectivity = 5;
         this.severity = 0;
         this.lethality = 0;
@@ -24,15 +24,12 @@ class Virus{
     }
     drawRedDot(x_, y_){
         middleContext.fillStyle = "red";
-        /*middleContext.beginPath();
-        middleContext.arc(x_, y_, this.personDorRadius, 0, Math.PI*2);
-        middleContext.fill();
-        middleContext.closePath();*/
         middleContext.fillRect(x_, y_, 1, 1);
     }
     start(x_, y_){
         if (this.hasStarted) return;
         let pixel = backContext.getImageData(x_, y_, 1, 1).data;
+
         if (typeof contInd[pixel[1]] === 'undefined') return;
         this.infectedIn[contInd[pixel[1]]]++;
         this.brInfected++;
